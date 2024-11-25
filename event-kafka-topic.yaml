@@ -1,0 +1,11 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: events
+  labels:
+    strimzi.io/cluster: devlab-cluster
+spec:
+  partitions: 10
+  replicas: 2
+  config:
+    retention.ms: 7200000

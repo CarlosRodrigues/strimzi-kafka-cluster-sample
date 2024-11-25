@@ -1,0 +1,24 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: test-user
+  labels:
+    strimzi.io/cluster: devlab-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: events
+          patternType: literal
+        operations:
+          - All
+      - resource:
+          type: group
+          name: my-consumer-group-prefix
+          patternType: prefix
+        operations:
+          - Read
